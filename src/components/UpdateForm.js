@@ -1,8 +1,8 @@
-const BlogForm = ({ addNewBlog }) => {
+const UpdateForm = ({ updateBlog, blogToUpdate }) => {
   return (
     <div>
-      <h2>Add new blog</h2>
-      <form onSubmit={addNewBlog}>
+      <h2>Update blog</h2>
+      <form onSubmit={(e) => updateBlog(e, blogToUpdate)}>
         <label>Blog title:</label>
         <input type="text" required />
         <label>Blog content:</label>
@@ -15,4 +15,4 @@ const BlogForm = ({ addNewBlog }) => {
   );
 };
 
-export default BlogForm;
+export default UpdateForm;

@@ -1,0 +1,16 @@
+{
+  "blogs": [
+    {
+      "title": "First blog",
+      "content": "my first blog",
+      "author": "JO",
+      "id": 1
+    },
+    {
+      "title": "ok",
+      "content": "ok 2nd blog",
+      "author": "js",
+      "id": 329941
+    }
+  ]
+}
