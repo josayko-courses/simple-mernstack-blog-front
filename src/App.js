@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useFetch } from 'react';
+import BlogForm from './components/BlogForm';
 
 const App = () => {
   const [blogs, setBlogs] = useState([
@@ -19,15 +20,45 @@ const App = () => {
     }
   ]);
 
+  const [blogForm, showBlogForm] = useState(false);
+
+  const addBlog = (e) => {
+    e.preventDefault();
+    showBlogForm(true);
+  };
+
+  const deleteBlog = (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
+  };
+
+  const addNewBlog = (e) => {
+    e.preventDefault();
+    const newBlog = {
+      id: Math.floor(Math.random() * 1000000),
+      title: e.target[0].value,
+      content: e.target[1].value,
+      author: e.target[2].value
+    };
+    showBlogForm(false);
+    setBlogs(blogs.concat(newBlog));
+  };
+
   return (
     <div className="App">
       <h1>Blogs</h1>
-      {blogs.map((blog) => (
-        <div key={blog.id}>
-          <h2>{blog.title}</h2>
-          <p>{blog.author}</p>
-        </div>
-      ))}
+      <button onClick={addBlog}>Add new blog</button>
+      {!blogForm &&
+        blogs.map((blog) => (
+          <div key={blog.id}>
+            <h2>{blog.title}</h2>
+            <p>{blog.author}</p>
+            <button id={blog.id} onClick={deleteBlog}>
+              delete
+            </button>
+          </div>
+        ))}
+      {blogForm && <BlogForm addNewBlog={addNewBlog} />}
     </div>
   );
 };
