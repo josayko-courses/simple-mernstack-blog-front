@@ -8,7 +8,7 @@ const App = () => {
   const [blogForm, showBlogForm] = useState(false);
   const [updateForm, showUpdateForm] = useState(false);
   const [blogToUpdate, setBlogToUpdate] = useState({});
-  const baseURL = 'http://localhost:3001/api/blogs/';
+  const baseURL = '/api/blogs/';
 
   useEffect(() => {
     axios
@@ -24,36 +24,31 @@ const App = () => {
 
   const updateBlogForm = (e) => {
     e.preventDefault();
-    const blog = blogs.find((blog) => blog.id === Number(e.target.id));
+    const blog = blogs.find((blog) => blog.id === e.target.id);
     setBlogToUpdate(blog);
     showUpdateForm(true);
   };
 
   const deleteBlog = (e) => {
     e.preventDefault();
-    const updatedBlogs = blogs.filter(
-      (blog) => blog.id !== Number(e.target.id)
-    );
-    setBlogs(updatedBlogs);
+    const updatedBlogs = blogs.filter((blog) => blog.id !== e.target.id);
     axios
       .delete(baseURL + e.target.id)
-      .then((res) => console.log(res))
+      .then(() => setBlogs(updatedBlogs))
       .catch((err) => console.log(err));
   };
 
   const addNewBlog = (e) => {
     e.preventDefault();
+    showBlogForm(false);
     const newBlog = {
-      id: Math.floor(Math.random() * 1000000),
       title: e.target[0].value,
       content: e.target[1].value,
       author: e.target[2].value
     };
-    showBlogForm(false);
-    setBlogs(blogs.concat(newBlog));
     axios
       .post(baseURL, newBlog)
-      .then((res) => console.log(res))
+      .then((res) => setBlogs(blogs.concat(res.data)))
       .catch((err) => console.log(err));
   };
 
@@ -72,10 +67,9 @@ const App = () => {
       }
       return blog;
     });
-    setBlogs(updatedBlogs);
     axios
       .put(baseURL + blogToUpdate.id, newBlog)
-      .then((res) => console.log(res))
+      .then(() => setBlogs(updatedBlogs))
       .catch((err) => console.log(err));
     showUpdateForm(false);
   };
