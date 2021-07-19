@@ -8,7 +8,7 @@ const App = () => {
   const [blogForm, showBlogForm] = useState(false);
   const [updateForm, showUpdateForm] = useState(false);
   const [blogToUpdate, setBlogToUpdate] = useState({});
-  const baseURL = 'http://localhost:3030/blogs/';
+  const baseURL = 'http://localhost:3001/api/blogs/';
 
   useEffect(() => {
     axios
