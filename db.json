@@ -1,9 +1,9 @@
 {
   "blogs": [
     {
-      "title": "First blog",
-      "content": "my first blog",
-      "author": "JO",
+      "title": "1st blog",
+      "content": "1st blog",
+      "author": "ok",
       "id": 1
     },
     {
@@ -11,6 +11,12 @@
       "content": "ok 2nd blog",
       "author": "js",
       "id": 329941
+    },
+    {
+      "id": 405928,
+      "title": "3rd blog",
+      "content": "3rd blog",
+      "author": "JS"
     }
   ]
 }

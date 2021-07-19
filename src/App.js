@@ -53,12 +53,8 @@ const App = () => {
     setBlogs(blogs.concat(newBlog));
     axios
       .post(baseURL, newBlog)
-      .then((res) => {
-        console.log(res.statusText);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   const updateBlog = (e, blogToUpdate) => {
